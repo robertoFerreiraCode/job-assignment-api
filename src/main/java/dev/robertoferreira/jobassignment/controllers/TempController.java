@@ -1,6 +1,7 @@
 package dev.robertoferreira.jobassignment.controllers;
 
 import dev.robertoferreira.jobassignment.dtos.TempDTO;
+import dev.robertoferreira.jobassignment.dtos.TempIdentifierDTO;
 import dev.robertoferreira.jobassignment.entities.Job;
 import dev.robertoferreira.jobassignment.entities.Temp;
 import dev.robertoferreira.jobassignment.services.JobService;
@@ -30,7 +31,7 @@ public class TempController {
         return new ResponseEntity<>(tempList, HttpStatus.OK);
     }
 
-    // eg http://localhost:8080/temps/8
+    // GET /temps/{id} - get temp by id
     @GetMapping(value = "/{id}")
     public ResponseEntity<Temp> getTemp(@PathVariable long id) {
 
@@ -50,10 +51,20 @@ public class TempController {
         return new ResponseEntity<>(tempList, HttpStatus.OK);
     }
 
-//    GET /temps/{id} - get temp by id
+//    POST /temps - Create a temp
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public void createTemp(@Valid @RequestBody TempDTO temp) {
         tempService.createTemp(temp);
+    }
+
+    // PATCH /temps/{id} - Add temps to be managed
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Temp> assignReports(@PathVariable long id, @Valid @RequestBody TempIdentifierDTO data) {
+        Temp temp = this.tempService.assignReports(id, data);
+        if (temp == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(temp, HttpStatus.OK);
     }
 }
