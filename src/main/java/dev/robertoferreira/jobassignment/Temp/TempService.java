@@ -1,16 +1,15 @@
-package dev.robertoferreira.jobassignment.services;
+package dev.robertoferreira.jobassignment.Temp;
 
-import dev.robertoferreira.jobassignment.dtos.TempDTO;
-import dev.robertoferreira.jobassignment.dtos.TempIdentifierDTO;
-import dev.robertoferreira.jobassignment.entities.Job;
-import dev.robertoferreira.jobassignment.entities.Temp;
-import dev.robertoferreira.jobassignment.repositories.TempRepository;
+import dev.robertoferreira.jobassignment.Temp.TempDTO;
+import dev.robertoferreira.jobassignment.Temp.TempIdentifierDTO;
+import dev.robertoferreira.jobassignment.Job.Job;
+import dev.robertoferreira.jobassignment.Temp.Temp;
+import dev.robertoferreira.jobassignment.Temp.TempRepository;
 import dev.robertoferreira.jobassignment.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;

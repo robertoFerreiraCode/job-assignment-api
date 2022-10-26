@@ -1,9 +1,6 @@
-package dev.robertoferreira.jobassignment.controllers;
+package dev.robertoferreira.jobassignment.Job;
 
-import dev.robertoferreira.jobassignment.dtos.JobDTO;
-import dev.robertoferreira.jobassignment.dtos.TempIdentifierDTO;
-import dev.robertoferreira.jobassignment.entities.Job;
-import dev.robertoferreira.jobassignment.services.JobService;
+import dev.robertoferreira.jobassignment.Temp.TempIdentifierDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,7 @@
-package dev.robertoferreira.jobassignment.entities;
+package dev.robertoferreira.jobassignment.Job;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import dev.robertoferreira.jobassignment.Temp.Temp;
 
 import javax.persistence.*;
 

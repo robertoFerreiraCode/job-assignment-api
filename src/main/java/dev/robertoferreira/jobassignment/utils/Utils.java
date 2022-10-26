@@ -1,6 +1,6 @@
 package dev.robertoferreira.jobassignment.utils;
 
-import dev.robertoferreira.jobassignment.entities.Job;
+import dev.robertoferreira.jobassignment.Job.Job;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

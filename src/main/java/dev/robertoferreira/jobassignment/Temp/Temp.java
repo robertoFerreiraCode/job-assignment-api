@@ -1,10 +1,11 @@
-package dev.robertoferreira.jobassignment.entities;
+package dev.robertoferreira.jobassignment.Temp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import dev.robertoferreira.jobassignment.Job.Job;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,16 +18,32 @@ public class Temp {
 
     private String firstName;
     private String lastName;
+
     @OneToMany
     private List<Job> jobs = new ArrayList<>();
+
     @OneToMany(mappedBy="manager")
     private Set<Temp> reports;
+
     @ManyToOne
     private Temp manager;
+
+    @NotBlank
+    private String username;
+
+    @NotBlank
+    private String password;
 
     public Temp(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Temp(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
     }
 
     public Temp() {}
@@ -73,4 +90,20 @@ public class Temp {
     public Temp getManager() { return manager; }
 
     public void setManager(Temp manager) { this.manager = manager; }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

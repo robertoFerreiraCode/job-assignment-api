@@ -1,11 +1,7 @@
-package dev.robertoferreira.jobassignment.controllers;
+package dev.robertoferreira.jobassignment.Temp;
 
-import dev.robertoferreira.jobassignment.dtos.TempDTO;
-import dev.robertoferreira.jobassignment.dtos.TempIdentifierDTO;
-import dev.robertoferreira.jobassignment.entities.Job;
-import dev.robertoferreira.jobassignment.entities.Temp;
-import dev.robertoferreira.jobassignment.services.JobService;
-import dev.robertoferreira.jobassignment.services.TempService;
+import dev.robertoferreira.jobassignment.Job.Job;
+import dev.robertoferreira.jobassignment.Job.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +23,6 @@ public class TempController {
     @GetMapping
     public ResponseEntity<List<Temp>> getAllTemps() {
         List<Temp> tempList = this.tempService.getAllTemps();
-        if (tempList.isEmpty()) return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(tempList, HttpStatus.OK);
     }
 
@@ -45,9 +40,6 @@ public class TempController {
         Optional<Job> job = this.jobService.getJob(jobID);
         if (job.isEmpty()) return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         List<Temp> tempList = this.tempService.filterAvailableTemps(job.get());
-        if (tempList.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(tempList, HttpStatus.OK);
     }
 

@@ -1,11 +1,8 @@
-package dev.robertoferreira.jobassignment.services;
+package dev.robertoferreira.jobassignment.Job;
 
-import dev.robertoferreira.jobassignment.dtos.JobDTO;
-import dev.robertoferreira.jobassignment.dtos.TempIdentifierDTO;
-import dev.robertoferreira.jobassignment.entities.Job;
-import dev.robertoferreira.jobassignment.entities.Temp;
-import dev.robertoferreira.jobassignment.repositories.JobRepository;
-import dev.robertoferreira.jobassignment.repositories.TempRepository;
+import dev.robertoferreira.jobassignment.Temp.TempIdentifierDTO;
+import dev.robertoferreira.jobassignment.Temp.Temp;
+import dev.robertoferreira.jobassignment.Temp.TempService;
 import dev.robertoferreira.jobassignment.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +16,6 @@ public class JobService {
     private JobRepository repository;
     @Autowired
     private TempService tempService;
-    @Autowired
-    private TempRepository tempRepository;
 
     public List<Job> getAllJobs() {
         return this.repository.findAll();

@@ -1,4 +1,4 @@
-package dev.robertoferreira.jobassignment.dtos;
+package dev.robertoferreira.jobassignment.Temp;
 
 import javax.validation.constraints.NotNull;
 
