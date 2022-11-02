@@ -11,11 +11,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-
+@RestController
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -31,17 +34,19 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginRequest) {
-
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
-
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
                 .body(new UserInfoResponseDTO(userDetails.getId(), userDetails.getUsername()));
     }
+
+    @PostMapping("/signout")
+    public ResponseEntity<?> logoutUser() {
+    ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+        .body(new MessageResponseDTO("You've been signed out!"));
+  }
 }
