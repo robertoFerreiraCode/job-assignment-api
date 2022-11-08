@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5173")
+@CrossOrigin(origins = "http://127.0.0.1:5173/", allowedHeaders = "*")
 @RequestMapping(value = "/jobs")
 public class JobController {
     @Autowired
@@ -48,6 +48,7 @@ public class JobController {
     }
 
 //    PATCH /jobs/{id} - Updates job, endpoint used to assign temps to jobs
+    @CrossOrigin(origins = "http://127.0.0.1:5173")
     @PatchMapping(value = "/{jobID}")
     public ResponseEntity<Job> assignTemp(@PathVariable long jobID, @Valid @RequestBody TempIdentifierDTO data) {
         Job job = this.jobService.assignTemp(jobID, data);
