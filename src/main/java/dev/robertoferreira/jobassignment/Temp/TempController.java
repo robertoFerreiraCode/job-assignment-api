@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5173")
+@CrossOrigin(origins = {"http://127.0.0.1:5173"})
 @RequestMapping(value = "/temps")
 public class TempController {
     @Autowired
@@ -55,6 +55,15 @@ public class TempController {
     @PatchMapping(value = "/{id}")
     public ResponseEntity<Temp> assignReports(@PathVariable long id, @Valid @RequestBody TempIdentifierDTO data) {
         Temp temp = this.tempService.assignReports(id, data);
+        if (temp == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(temp, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/edit/{id}")
+    public ResponseEntity<Temp> editDetails(@PathVariable long id, @Valid @RequestBody TempDetailsDTO data) {
+        Temp temp = this.tempService.editDetails(id, data);
         if (temp == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

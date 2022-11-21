@@ -42,6 +42,19 @@ public class TempService {
         repository.save(temp);
     }
 
+    public Temp editDetails(long id, TempDetailsDTO data) {
+        Optional<Temp> fetchedTemp = this.getTemp(id);
+        if (fetchedTemp.isEmpty()) { return null; }
+        Temp temp = fetchedTemp.get();
+//        do validation checking later
+        temp.setFirstName(data.getFirstName());
+        temp.setLastName(data.getLastName());
+        temp.setUsername(data.getUsername());
+        temp.setPassword(data.getPassword());
+        repository.save(temp);
+        return temp;
+    }
+
     public Temp assignReports(long id, TempIdentifierDTO data) {
         Optional<Temp> fetchedTemp = this.getTemp(id);
         if (fetchedTemp.isEmpty()) { return null; }
