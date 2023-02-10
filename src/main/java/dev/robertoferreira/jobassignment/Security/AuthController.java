@@ -39,8 +39,12 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Set-Cookie",jwtCookie.toString() + "; Path=/api; Max-Age=86400; SameSite=None;");
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
                 .body(new UserInfoResponseDTO(userDetails.getId(), userDetails.getUsername()));
+//        return ResponseEntity.ok().headers(headers)
+//                .body(new UserInfoResponseDTO(userDetails.getId(), userDetails.getUsername()));
     }
 
     @PostMapping("/signout")

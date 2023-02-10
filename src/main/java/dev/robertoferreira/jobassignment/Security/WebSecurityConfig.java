@@ -44,7 +44,7 @@ public class WebSecurityConfig {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/**").permitAll().anyRequest().permitAll();
+                .authorizeRequests().antMatchers("/signin").permitAll().anyRequest().permitAll();
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         http.headers().httpStrictTransportSecurity().disable();
