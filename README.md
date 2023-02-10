@@ -8,6 +8,8 @@ Full stack mock Job Assignment application which allows users to assign temporar
 
 ### Requirements
 
+#### Backend
+
 -   JDK 17+
 -   MySQL Server
 
@@ -15,6 +17,18 @@ The project files expect a MySQL Server running on localhost on port 3306 with u
 
 1. Clone this repository with `git clone`
 2. Run from project files with `./mvnw spring-boot:run`
+
+#### Frontend
+
+Clone this repository. You will need `node` and `npm` installed globally on your machine.
+
+Installation:
+
+`npm install`
+
+To run:
+
+`npm start`
 
 ## Endpoints
 
